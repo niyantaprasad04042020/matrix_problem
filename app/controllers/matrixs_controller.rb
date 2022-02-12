@@ -1,7 +1,7 @@
 class MatrixsController < ApplicationController
   def sub_matrix
     matrix     = params[:matrix]
-    if !(matrix.flatten.uniq & [2,3,4,5,6,7,8,9]).any? && matrix.flatten.uniq.all?{|i| i.is_a?(Integer)}
+    if matrix.present? && !(matrix.flatten.uniq & [2,3,4,5,6,7,8,9]).any? && matrix.flatten.uniq.all?{|i| i.is_a?(Integer)}
       sub_matrix = []
       row        = matrix.length
       column     = matrix[0].length

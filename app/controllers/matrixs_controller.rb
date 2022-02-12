@@ -1,6 +1,7 @@
 class MatrixsController < ApplicationController
   def sub_matrix
     matrix     = params[:matrix]
+    binding.pry
     if matrix.present? && !(matrix.flatten.uniq & [2,3,4,5,6,7,8,9]).any? && matrix.flatten.uniq.all?{|i| i.is_a?(Integer)}
       sub_matrix = []
       row        = matrix.length
@@ -52,9 +53,7 @@ class MatrixsController < ApplicationController
 
       respond_to do |format|
         if final_matrix.present?
-          format.json { render json: {status: "500", error:"Internal Server Error"} }
-
-          #format.json { render json: {sub_matrix: final_matrix} }
+          format.json { render json: {sub_matrix: final_matrix} }
         else
           format.json { render json: {status: "500", error:"Internal Server Error"} }
         end
